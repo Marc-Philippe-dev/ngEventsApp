@@ -1,0 +1,21 @@
+<div class="mx-10 mt-5 grid grid-cols-10 gap-4" *ngFor="let session of visibleSessions">
+    <div *ngIf="authService.isAuthenticated()">
+       <upvote (vote)="toggleVote(session)"  [count]="session.voters.length" [voted]="userHasVoted(session)">
+       </upvote> 
+    </div>
+    <div class=" typo  col-span-9">
+        <collapsible  >
+            <div class="flex justify-between" title>
+                <h2><strong>Name: </strong>{{session.name}}</h2>
+                <i class="fa-solid fa-fire" style="color:red" *ngIf="session.voters.length > 3"></i>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div body>
+                <div> <strong>Presenter: </strong>{{session.presenter}}</div>
+                <div><strong>Duration: </strong>{{session.duration | duration}}</div>
+                <div><strong>Level: </strong>{{session.level}}</div>
+                <div><strong>Abstract: </strong>{{session.abstract}}</div>
+            </div>
+        </collapsible>
+    </div>
+</div>

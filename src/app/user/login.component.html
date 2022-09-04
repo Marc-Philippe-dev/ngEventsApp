@@ -1,0 +1,67 @@
+<div class="mt-5 ">
+    <img src="assets/images/wave.png" class="fixed hidden lg:block inset-0 h-full" style="z-index:-1" />
+    <div
+        class=" w-screen h-screen flex flex-col justify-center items-center lg:grid lg:grid-cols-2 lg:fixed lg:top-10 ">
+        <img src="assets/images/unlock.svg" alt="unlock image"
+            class=" hidden  lg:block w-1/2 hover:scale-150 transition-all duration-500 transform mx-auto" />
+
+        <form #loginForm=ngForm (ngSubmit)="login(loginForm.value)" action=""
+            class="flex flex-col justify-center items-center w-1/2" novalidate>
+            <img src="assets/images/avatar.svg" alt="Login Avatar" class="w-32" />
+
+            <h2 class="my-8 font-display font-bold text-2xl text-gray-500">Welcome To You</h2>
+
+            <div class="relative ">
+                <div>
+
+                </div>
+                <i class="fa fa-user  absolute text-primarycolor "></i>
+                <em
+                    *ngIf="loginForm.controls['userName']?.invalid && (loginForm.controls['userName']?.touched  || mouseoverLogin)">Required</em>
+                <input (ngModel)="userName" name="userName" type="text" placeholder="Username"
+                    class="pl-8 border-b-2 rounded-md text-lg focus:outline-none focus:border-primarycolor transition-all duration-500 "
+                    required>
+            </div>
+            <div class="relative mt-8">
+                <div>
+
+                </div>
+                <i class="fa fa-lock absolute text-primarycolor "></i>
+                <em
+                    *ngIf="loginForm.controls['password']?.invalid && (loginForm.controls['password']?.touched || mouseoverLogin)">Required</em>
+                <input (ngModel)="password" name="password" type="password" placeholder="Password"
+                    class="pl-8 border-b-2 rounded-md text-lg focus:outline-none focus:border-primarycolor transition-all duration-500 "
+                    required>
+
+            </div>
+            <a href="#" class="self-end mt-4 text-gray-500 font-bold">Forgot Password?</a>
+            <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">
+                <button type="submit" [disabled]="loginForm.invalid"
+                    class="py-3 px-20 bg-primarycolor rounded-full text-white font-bold uppercase text-lg mt-4">
+                    Login
+                </button>
+            </span>
+
+            <button class="py-3 px-20 bg-red-400 rounded-full text-white font-bold uppercase text-lg mt-4"
+                (click)="cancel()">
+                Cancel
+            </button>
+
+            <div *ngIf="loginInvalid"
+                class="flex p-4 mt-5 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+                role="alert">
+                <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor"
+                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div>
+                    Invalid login Info
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

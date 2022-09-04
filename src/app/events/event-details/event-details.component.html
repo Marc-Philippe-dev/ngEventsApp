@@ -1,0 +1,64 @@
+<div class=" typo grid-container mb-10" *ngIf="event">
+    <div class="event-img">
+        <img [src]="event.imageUrl" alt="{{event.name}}">
+    </div>
+    <div  *ngIf="event">
+        <div><strong>Date: {{event.name}}</strong></div>
+        <div><strong>Time: {{event.time}}</strong></div>
+        <div><strong>Price: {{event.price | currency}}</strong></div>
+    </div>
+    <div  *ngIf="event.location">
+        <address>
+            <strong>Address: </strong>
+            <span>{{event.location.address}}</span> &nbsp;,
+            <span>{{event.location.city}}</span>
+        </address>
+    </div>
+</div>
+
+<div class="mx-10 mb-5">
+    <hr>
+    <div class="flex justify-center mt-5">
+        <button  (click)="addSession()"
+            class="py-2 px-4 text-sm font-medium text-gray-700   rounded-lg border border-gray-200 hover:bg-orange-400   focus:ring-gray-700 focus:text-gray-700 dark:bg-primarycolor ">
+            Add Session
+        </button>
+    </div>
+    <div class="md:grid md:grid-cols-2">
+        <div class="flex justify-center mt-5 ">
+            <button (click) = "sortBy = 'name'"  
+                class="py-2 px-4 text-sm font-medium text-blue-700 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                By Name
+            </button>
+            
+            <button (click) = "sortBy = 'votes'"
+                class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                By Votes
+            </button>
+        </div>
+        <div class="flex justify-center mt-5 ">
+            <button (click)="filterBy = 'all' "   
+                class="py-2 px-4 text-sm font-medium text-blue-700 bg-white rounded-l-lg border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                All
+            </button>
+            <button (click)="filterBy = 'beginner' "
+                class="py-2 px-4 text-sm font-medium text-gray-900 bg-white border-t border-b border-r border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                Beginner
+            </button>
+            <button (click)="filterBy = 'intermediate' " 
+                class="py-2 px-4 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                Intermediate
+            </button>
+            <button (click)="filterBy = 'advanced' " 
+                class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                Advanced
+            </button>
+        </div>
+    </div>
+    
+    <session-list [sessions]="event?.sessions!" *ngIf="!addMode" [filterBy]="filterBy" [sortBy]="sortBy" [eventId]="event?.id!"></session-list>
+
+    <create-session *ngIf="addMode" (saveNewSession)="saveNewSession($event)" (cancelAddSession)="cancelAddSession()"></create-session>
+    
+</div>
+

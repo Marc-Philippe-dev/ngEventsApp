@@ -1,0 +1,23 @@
+<div  class=" p-5 mb-4 cursor-pointer bg-gray-500"
+*ngIf="event"
+[routerLink]="['/events', event.id]"
+>
+    <h2 class="text-2xl font-medium pb-5">{{event.name}}</h2>
+    <div>Date:{{event.date | date}}</div>
+    <div [ngSwitch]="event.time"
+     [ngClass]="getStartTimeClass()">Time:{{event.time}}
+     
+        <span *ngSwitchCase ="'8:00 am'">(Early Start)</span>
+        <span *ngSwitchCase ="'10:00 am'">(Late Start)</span>
+        <span *ngSwitchDefault>(Normal Start)</span>
+    </div>
+    <div>Price:{{event.price | currency}}</div>
+    <div *ngIf="event.location " >
+        <span>Location:{{event.location.address}}</span>
+        <span>&nbsp;</span>
+        <span>{{event.location.city}} , {{event.location.country}}</span>
+    </div>
+    <div *ngIf="event.onlineUrl"> 
+        OnlineUrl: {{event.onlineUrl}}
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="mx-10">
+    <h1 class="text-center text-3xl">Edit Profile</h1>
+    <hr>
+    <div class="h-screen flex justify-center">
+        <div class="py-6 px-8 h-[25rem] mt-20  bg-gray-300 rounded shadow-xl">
+            <form [formGroup]="profileForm" (ngSubmit)="saveProfile(profileForm.value)"
+            autocomplete="off" novalidate>
+                <div class="mb-6" [ngClass]="{error: !validateFirstName() }">
+                    <label for="firstName" class="block text-gray-800 font-bold">Name:</label>
+                    <em *ngIf=" !validateFirstName() && profileForm.controls['firstName'].hasError('required')">Required</em>
+                    <em *ngIf=" !validateFirstName() && profileForm.controls['firstName'].hasError('pattern')">Must start with a letter</em>
+                    <input formControlName="firstName"
+                     type="text" id="firstName" placeholder="FirstName"
+                        class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
+                </div>
+
+                <div  [ngClass]="{error: !validatelastName() }">
+                    <label for="LastName" class="block text-gray-800 font-bold">LastName:</label>
+                    <em *ngIf=" !validatelastName() && profileForm.controls['lastName'].hasError('required')">Required</em>
+                    <em *ngIf=" !validatelastName() && profileForm.controls['lastName'].hasError('pattern') ">Must start with a letter</em>
+                    <input formControlName="lastName"
+                    type="text" id="LastName" placeholder="Last Name"
+                        class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" />
+                </div>
+                <button type="submit"
+                    class="cursor-pointer py-2 px-4 block mt-6 bg-indigo-500 text-white font-bold w-full text-center rounded">Change</button>
+                <button (click)="cancel()"
+                    class="cursor-pointer py-2 px-4 block mt-6 bg-red-500 text-white font-bold w-full text-center rounded">Cancel</button>
+                <button type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium 
+            rounded-lg text-sm px-5 py-2.5 mr-2 my-2 dark:focus:ring-yellow-900" style="float:right" (click)="logout()">Logout</button>
+            </form>
+
+        </div>
+    </div>
+</div>

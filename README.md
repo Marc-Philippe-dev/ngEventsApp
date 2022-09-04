@@ -2,13 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
 
+It covers all Angular Fundamentals: From how to build pages and reusable elements using Angular Components and the new Angular syntax. These fundamentals have been developed : routing, creating reusable services and dependency injection, building forms with validation, and communicating with the server using HTTP and observables. 
+This project have been mainly build following ** Joe Eames and Jim Cooper Angular 11 Fundamentals courses**
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
